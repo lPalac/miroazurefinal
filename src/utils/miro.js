@@ -1,11 +1,13 @@
+import { supabase } from "./index.js";
+
 export const insertGitHubAppCards = async (gitHubIssues) => {
   await Promise.all(
     gitHubIssues.map(async (issue, index) => {
       //  Get current Miro board
       const info = await miro.board.getInfo();
-      console.log(info);
+
       // Get issue status color
-      const color = "#FAFA";
+      const color = "#FAFAfa";
       // Create App Card
       const appCard = await miro.board.createAppCard({
         x: index * 350,
@@ -27,6 +29,14 @@ export const insertGitHubAppCards = async (gitHubIssues) => {
           },
         ],
         status: "connected",
+      });
+      console.log(appCard.id);
+
+      //await supabase.from("PBI-mapping").select({});
+      //TODO check if miroCardId already exists
+      await supabase.from("PBI-mapping").insert({
+        miroCardId: appCard.id,
+        azurePBIId: issue.id,
       });
 
       if (index === 0) {

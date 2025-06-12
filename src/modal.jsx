@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Checkbox, GitHubIssueHeader, Loader } from "./components";
 import { insertGitHubAppCards } from "./utils/miro";
 
+import { fetchGitHubIssues } from "./issues.js";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
   React.useEffect(() => {
@@ -78,6 +79,13 @@ const Modal = () => {
         // disabled={selectedGitHubIssues.length === 0}
       >
         Import
+      </button>
+      <button
+        className="button button-primary"
+        type="button"
+        onClick={() => fetchGitHubIssues(213)}
+      >
+        TEST
       </button>
     </div>
   );

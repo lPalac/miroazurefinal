@@ -96,11 +96,11 @@ function App() {
 
   const handleSaveClick = async () => {
     /*const { data, error } = await supabase
-      .from("card-mapping")
+      .table("PBI-mapping")
       .select(
-        "id, miroAppCardId::text, gitHubIssueId, miroUserId::text, gitHubUsername, created_at, miroBoardId, gitHubIssueNumber, gitHubProjectCardId",
+        "id, miroCardId::text, gitHubIssueId, miroUserId::text, gitHubUsername, created_at, miroBoardId, gitHubIssueNumber, gitHubProjectCardId",
       )
-      .eq("miroAppCardId", appCardId);
+      .eq("miroCardId", appCardId);
 
     if (error) {
       console.error(error);
