@@ -8,7 +8,24 @@ const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
   React.useEffect(() => {
     const getPBIs = async () => {
-      const PBIsID = [8230, 8236];
+      const project = "7interactive-DiVerso";
+
+      const pbiResponse = await fetch(
+        `https://dev.azure.com/lilcodelab/${project}/_apis/wit/wiql?top=200&api-version=7.1`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Basic bHVrYS5wYWxhY0BsaXR0bGVjb2RlLmNvbTp0QWxxYW1xTXE5eXFGM1k1NUpoSDVBUG5OcXlqNkpmOG12Qk16Qk5Cdmw0QXNkQ3k3dlJiSlFRSjk5QkZBQ0FBQUFBdjZYWnZBQUFTQVpETzRhTUg=`,
+          },
+          body: JSON.stringify({
+            query: `SELECT [System.Id] FROM WorkItems WHERE [System.TeamProject] ='${project}' ORDER BY [System.ChangedDate] DESC`,
+          }),
+        }
+      ).then((res) => res.json());
+      const PBIsID = pbiResponse.workItems.map((pbi) => pbi.id);
+
+      console.log(PBIsID);
 
       const response = await fetch(
         `https://dev.azure.com/lilcodelab/7interactive-DiVerso/_apis/wit/workitems?ids=${PBIsID.join(
