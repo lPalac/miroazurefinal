@@ -1,13 +1,7 @@
 import * as React from "react";
-import Checkbox from "../Checkbox";
 import Tag from "../Tag";
 
-const GitHubIssueRow = ({
-  title,
-  date,
-  status,
-  onSelect,
-}) => {
+const GitHubIssueRow = ({ title, date, status, onSelect }) => {
   const issueDate = new Date();
   const month = issueDate.getUTCMonth() + 1;
   const day = issueDate.getUTCDate();
@@ -26,13 +20,7 @@ const GitHubIssueRow = ({
 
   return (
     <>
-      <div className="grid-checkbox">
-        <Checkbox
-          onSetChecked={(value) => {
-            onSelect(value);
-          }}
-        />
-      </div>
+      <div className="grid-checkbox"></div>
       <div className="grid-title">
         <p className="github-issue-title">{title}</p>
       </div>

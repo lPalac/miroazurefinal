@@ -1,8 +1,8 @@
-import { supabase } from "./index.js";
+import { getStatusColor, supabase } from "./index.js";
 
-export const insertGitHubAppCards = async (gitHubIssues) => {
+export const insertGitHubAppCards = async (PBIs) => {
   await Promise.all(
-    gitHubIssues.map(async (issue, index) => {
+    PBIs.map(async (issue, index) => {
       //  Get current Miro board
       const info = await miro.board.getInfo();
 
@@ -15,17 +15,24 @@ export const insertGitHubAppCards = async (gitHubIssues) => {
         title: issue.title,
         description: "issue.body",
         style: {
-          cardTheme: color,
+          cardTheme: getStatusColor(issue.state),
         },
         fields: [
           {
             value: issue.state,
             iconUrl: "https://cdn-icons-png.flaticon.com/512/3867/3867669.png",
             iconShape: "square",
-            fillColor: "#E5E5E5",
+            fillColor: color,
             textColor: "#000000",
-            tooltip:
-              "Caption text displayed in a tooltip when clicking or hovering over the preview field",
+            tooltip: "State",
+          },
+
+          {
+            value: String(issue.id),
+            iconShape: "square",
+            fillColor: color,
+            textColor: "#000000",
+            tooltip: "Azure PBI ID",
           },
         ],
         status: "connected",

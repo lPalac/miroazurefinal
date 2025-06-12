@@ -129,9 +129,10 @@ function App() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const currentStatus = urlParams.get("currentStatus");
+    const PBIId = urlParams.get("PBIId");
     if (currentAppCard) {
       currentAppCard.title = newTitle;
-      currentAppCard.description = "d";
+      /*   currentAppCard.description = "d";
       currentAppCard.fields = [
         {
           value: currentStatus,
@@ -142,7 +143,8 @@ function App() {
           iconUrl: "https://cdn-icons-png.flaticon.com/512/3867/3867669.png",
         },
       ];
-      currentAppCard.style.cardTheme = "#DADA";
+      currentAppCard.style.cardTheme = "#DADAda";
+      */
       await currentAppCard.sync();
 
       await miro.board.ui.closeModal();

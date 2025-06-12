@@ -1,11 +1,13 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import { Checkbox, GitHubIssueHeader, Loader } from "./components";
+import { GitHubIssueHeader, Loader } from "./components";
 import { insertGitHubAppCards } from "./utils/miro";
 
 import { fetchGitHubIssues } from "./issues.js";
+import { getStatusColor } from "./utils";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
+  const [selectedPBIs, setSelectedPBIs] = React.useState([]);
   React.useEffect(() => {
     const getPBIs = async () => {
       const project = "7interactive-DiVerso";
@@ -25,8 +27,6 @@ const Modal = () => {
       ).then((res) => res.json());
       const PBIsID = pbiResponse.workItems.map((pbi) => pbi.id);
 
-      console.log(PBIsID);
-
       const response = await fetch(
         `https://dev.azure.com/lilcodelab/7interactive-DiVerso/_apis/wit/workitems?ids=${PBIsID.join(
           ","
@@ -44,6 +44,7 @@ const Modal = () => {
           title: item.fields["System.Title"],
           state: item.fields["System.State"],
           description: item.fields["System.Description"],
+          create_at: item.fields["System.CreatedDate"],
           assignedTo:
             item.fields["System.AssignedTo"]?.displayName || "Unassigned",
         }))
@@ -53,42 +54,73 @@ const Modal = () => {
   }, []);
   const handleImportClick = async () => {
     try {
-      await insertGitHubAppCards(PBIs);
-
+      const selected = PBIs.filter((pbi) => selectedPBIs.includes(pbi.id));
+      if (selected.length === 0) {
+        console.error("No PBIs selected");
+        return;
+      }
+      await insertGitHubAppCards(selected);
       await miro.board.ui.closeModal();
     } catch (error) {
       console.error(error);
     }
   };
+  const handleChange = (e, selectedId) => {
+    if (e.target.checked) {
+      setSelectedPBIs([...selectedPBIs, selectedId]);
+    } else {
+      setSelectedPBIs(selectedPBIs.filter((id) => id !== selectedId));
+    }
+  };
   return (
-    <div className="modal-grid">
-      {PBIs.length === 0 ? (
-        <div className="loader-container">
-          <Loader />
-        </div>
-      ) : (
-        <>
-          <GitHubIssueHeader />
-          {PBIs.map((issue, index) => (
-            <>
-              <div className="grid-checkbox">
-                <Checkbox />
-              </div>
-              <div className="grid-title">
-                <p className="github-issue-title">{issue.title}</p>
-              </div>
-              <div className="grid-status">
-                <div
-                  className="tag-container"
-                  style={{ backgroundColor: "#FAF" }}
-                >
-                  <p>{issue.state}</p>
+    <div>
+      <div className="modal-grid">
+        {PBIs.length === 0 ? (
+          <div className="loader-container">
+            <Loader />
+          </div>
+        ) : (
+          <>
+            <GitHubIssueHeader />
+            {PBIs.map((issue, index) => (
+              <React.Fragment key={issue.id}>
+                <div className="grid-checkbox">
+                  <label className="checkbox">
+                    <input
+                      type="checkbox"
+                      tabIndex={0}
+                      checked={selectedPBIs.includes(issue.id)}
+                      onChange={(e) => handleChange(e, issue.id)}
+                    />
+                    <span></span>
+                  </label>
                 </div>
-              </div>
-            </>
-          ))}
-        </>
-      )}
+                <div className="grid-title">
+                  <p className="github-issue-title">{issue.title}</p>
+                </div>
+
+                <div className="grid-status">
+                  <div
+                    className="tag-container"
+                    style={{ backgroundColor: getStatusColor(issue.state) }}
+                  >
+                    <p>{issue.state}</p>
+                  </div>
+                </div>
+                <div className="grid-date">
+                  <p>
+                    {new Date(issue.create_at).toLocaleDateString("hr-HR", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+              </React.Fragment>
+            ))}
+          </>
+        )}
+      </div>
       <button
         className="button button-primary"
         type="button"
