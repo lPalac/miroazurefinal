@@ -146,7 +146,26 @@ function App() {
       currentAppCard.style.cardTheme = "#DADAda";
       */
       await currentAppCard.sync();
+      const project = "7interactive-DiVerso";
+      const pbisRepsonse = await fetch(
+        `https://dev.azure.com/lilcodelab/_apis/wit/workitems/${PBIId}?api-version=7.1`,
+        {
+          headers: {
+            Authorization: `Basic bHVrYS5wYWxhY0BsaXR0bGVjb2RlLmNvbTp0QWxxYW1xTXE5eXFGM1k1NUpoSDVBUG5OcXlqNkpmOG12Qk16Qk5Cdmw0QXNkQ3k3dlJiSlFRSjk5QkZBQ0FBQUFBdjZYWnZBQUFTQVpETzRhTUg=`,
+            "Content-Type": "application/json-patch+json",
+          },
+          method: "PATCH",
+          body: JSON.stringify([
+            {
+              op: "replace",
+              path: "/fields/System.Title",
+              value: newTitle,
+            },
+          ]),
+        }
+      ).then((res) => res.json());
 
+      console.log("PBI updated:", pbisRepsonse);
       await miro.board.ui.closeModal();
     }
   };

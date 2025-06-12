@@ -132,7 +132,7 @@ const Modal = () => {
       <button
         className="button button-primary"
         type="button"
-        onClick={() => fetchGitHubIssues(213)}
+        onClick={() => fetchGitHubIssues(3458764631645069034)}
       >
         TEST
       </button>
