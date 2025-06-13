@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const GitHubIssueHeader = () => {
+const AzureIssueHeader = () => {
   return (
     <>
       <div className="grid-checkbox"></div>
@@ -17,4 +17,4 @@ const GitHubIssueHeader = () => {
   );
 };
 
-export default GitHubIssueHeader;
+export default AzureIssueHeader;

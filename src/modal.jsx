@@ -1,10 +1,10 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import { GitHubIssueHeader, Loader } from "./components";
-import { GitHub } from "./components/index.js";
+import { AzureIssueHeader, Loader } from "./components";
+import { Azure } from "./components/index.js";
 import { insertAzureAppCards } from "./utils/miro.js";
 
-import { fetchGitHubIssues } from "./issues.js";
+import { fetchAzureIssues } from "./issues.js";
 import { getStatusColor } from "./utils";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
@@ -91,7 +91,7 @@ const Modal = () => {
           className="button button-secondary"
           type="button"
           //TODO: remove this button
-          onClick={() => fetchGitHubIssues(3458764631645069034)}
+          onClick={() => fetchAzureIssues(3458764631645069034)}
         >
           TEST
         </button>
@@ -103,7 +103,7 @@ const Modal = () => {
           </div>
         ) : (
           <>
-            <GitHubIssueHeader />
+            <AzureIssueHeader />
             {PBIs.map((issue, index) => (
               <React.Fragment key={issue.id}>
                 <div className="grid-checkbox">
@@ -118,7 +118,7 @@ const Modal = () => {
                   </label>
                 </div>
                 <div className="grid-title">
-                  <p className="github-issue-title">{issue.title}</p>
+                  <p className="Azure-issue-title">{issue.title}</p>
                 </div>
 
                 <div className="grid-status">

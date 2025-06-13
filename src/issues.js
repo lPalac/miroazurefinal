@@ -9,9 +9,9 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcWJkcnRpbGFnaXVrbmV2d293Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk0MDEyNDcsImV4cCI6MjA2NDk3NzI0N30.22eaCXuRoSB--w4qRDzyK2Kioop091NZ4DT0O8gE9Qk"
 );
 
-export async function fetchGitHubIssues(miroCardId) {
+export async function fetchAzureIssues(miroCardId) {
   if (!miroCardId) {
-    console.error("GitHub Issue ID is required");
+    console.error("Azure Issue ID is required");
     return [];
   }
   // Fetch card mapping data from Supabase

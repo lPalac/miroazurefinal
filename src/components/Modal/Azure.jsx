@@ -8,8 +8,8 @@ const statuses = [
   { name: "Blocked", color: "#D62728" },
   { name: "Done", color: "#28A745" },
 ];
-const GitHub = () => {
-  const handleChooseGithubClick = async () => {
+const Azure = () => {
+  const handleChooseAzureClick = async () => {
     miro.board.ui.openModal({
       url: "modal.html",
       fullscreen: false,
@@ -18,7 +18,7 @@ const GitHub = () => {
 
   return (
     <div className="azure-container">
-      <h3>Import All PBIs from AzureDevOps</h3>
+      <h3>Import PBIs from Azure DevOps</h3>
       <p>
         Any changes you apply, either in Miro or in AzureDevOps, are synced
         between both tools.
@@ -51,7 +51,7 @@ const GitHub = () => {
       <button
         className="button button-primary"
         type="button"
-        onClick={handleChooseGithubClick}
+        onClick={handleChooseAzureClick}
       >
         Choose from AzureDevOps PBIs
       </button>
@@ -59,4 +59,4 @@ const GitHub = () => {
   );
 };
 
-export default GitHub;
+export default Azure;

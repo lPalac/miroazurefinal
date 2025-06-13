@@ -9,12 +9,10 @@ function App() {
   const [newDescription, setNewDescription] = React.useState("");
 
   /**
-   * Store information pulled from GitHub API
+   * Store information pulled from Azure API
    */
-  const [gitHubProjects, setGitHubProjects] = React.useState([]);
-  const [gitHubColumns, setGitHubColumns] = React.useState([
-    { name: "", id: 0 },
-  ]);
+  const [AzureProjects, setAzureProjects] = React.useState([]);
+  const [AzureColumns, setAzureColumns] = React.useState([{ name: "", id: 0 }]);
 
   /**
    * Store selected project options
@@ -44,7 +42,7 @@ function App() {
     const currentStatus = urlParams.get("currentStatus");
 
     if (appCardId && appCardTitle && appCardDescription && currentStatus) {
-      const status = gitHubColumns.find(
+      const status = AzureColumns.find(
         (column) => column.name === currentStatus
       );
 
@@ -55,44 +53,44 @@ function App() {
         setSelectedColumn(status);
       }
     }
-  }, [gitHubColumns]);
+  }, [AzureColumns]);
 
-  // Fetch GitHub Projects
+  // Fetch Azure Projects
   /*React.useEffect(() => {
-    const getGitHubProjects = async () => {
+    const getAzureProjects = async () => {
       try {
-        const gitHubProjects = await fetchGitHubProjects(username, repo);
+        const AzureProjects = await fetchAzureProjects(username, repo);
 
-        setGitHubProjects([...gitHubProjects]);
-        setSelectedProject(gitHubProjects[0]);
+        setAzureProjects([...AzureProjects]);
+        setSelectedProject(AzureProjects[0]);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getGitHubProjects();
+    getAzureProjects();
   }, []);*/
 
-  // Fetch GitHub Columns
+  // Fetch Azure Columns
   /* React.useEffect(() => {
-    const getGitHubColumns = async () => {
-      if (gitHubProjects.length > 0) {
+    const getAzureColumns = async () => {
+      if (AzureProjects.length > 0) {
         try {
-          const gitHubColumns = await fetchGitHubColumns(
-            gitHubProjects
+          const AzureColumns = await fetchAzureColumns(
+            AzureProjects
               .filter((project) => project.id !== selectedProject.id)[0]
               .id.toString(),
           );
 
-          setGitHubColumns([...gitHubColumns]);
+          setAzureColumns([...AzureColumns]);
         } catch (error) {
           console.error(error);
         }
       }
     };
 
-    getGitHubColumns();
-  }, [gitHubProjects]);*/
+    getAzureColumns();
+  }, [AzureProjects]);*/
 
   const handleSaveClick = async () => {
     // Update App Card via SDK
@@ -146,7 +144,7 @@ function App() {
 
   return (
     <div className="appcard-modal-container">
-      <h1>Edit GitHub card</h1>
+      <h1>Edit Azure card</h1>
       <Input
         label="Title"
         required

@@ -1,9 +1,9 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import { Miro, GitHub } from "./components";
+import { Miro, Azure } from "./components";
 
 function App() {
-  const [selectedTab, setSelectedTab] = React.useState("github");
+  const [selectedTab, setSelectedTab] = React.useState("Azure");
 
   const handleSelectTab = (value) => {
     setSelectedTab(value);
@@ -16,8 +16,8 @@ function App() {
           <div className="tabs-header-list">
             <div
               tabIndex={0}
-              className={`tab ${selectedTab === "github" && "tab-active"}`}
-              onClick={() => handleSelectTab("github")}
+              className={`tab ${selectedTab === "Azure" && "tab-active"}`}
+              onClick={() => handleSelectTab("Azure")}
             >
               <div className="tab-text tab-badge">Choose from AzureDevOps</div>
             </div>
@@ -33,7 +33,7 @@ function App() {
       </div>
 
       <div className="cs1 ce12">
-        {selectedTab === "github" ? <GitHub /> : <Miro />}
+        {selectedTab === "Azure" ? <Azure /> : <Miro />}
       </div>
     </div>
   );

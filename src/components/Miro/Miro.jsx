@@ -13,26 +13,26 @@ const Miro = () => {
   });
   const [selectedItems, setSelectedItems] = React.useState([]);
 
-  // Handle creating GitHub Issue & Card (inside project) in GitHub
-  const handleCreateGitHubCards = (selectedItems) => {
+  // Handle creating Azure Issue & Card (inside project) in Azure
+  const handleCreateAzureCards = (selectedItems) => {
     selectedItems.map(async (item) => {
       /* const cleanedContent = item.content.replace(/<\/?[^>]+(>|$)/g, "");
 
-      const gitHubIssue = await createGitHubIssue(username, repo, {
+      const AzureIssue = await createAzureIssue(username, repo, {
         title: cleanedContent,
         body: "Imported from Miro",
       });
 
-      const gitHubProjectCard = await createGitHubProjectCard(
+      const AzureProjectCard = await createAzureProjectCard(
         `${selectedColumn.id}`,
         {
           note: null,
-          content_id: gitHubIssue.id,
+          content_id: AzureIssue.id,
           content_type: "Issue",
         },
       );
 
-      await insertAppCards(item, selectedColor, gitHubProjectCard, gitHubIssue);
+      await insertAppCards(item, selectedColor, AzureProjectCard, AzureIssue);
       await removeSelectedItem(item);*/
     });
   };
@@ -74,7 +74,7 @@ const Miro = () => {
       <button
         className="button button-primary"
         disabled={!itemsSelected}
-        onClick={() => handleCreateGitHubCards(selectedItems)}
+        onClick={() => handleCreateAzureCards(selectedItems)}
       >
         Convert to AzureDevOps card
       </button>

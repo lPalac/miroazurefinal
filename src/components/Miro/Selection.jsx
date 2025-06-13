@@ -2,18 +2,12 @@ import * as React from "react";
 import Select from "../Select";
 import ColorPicker from "./ColorPicker";
 
-const Selection = ({
-  onSelectColumn,
-  onSelectColor,
-  color,
-}) => {
+const Selection = ({ onSelectColumn, onSelectColor, color }) => {
   /**
-   * Store information pulled from GitHub API
+   * Store information pulled from Azure API
    */
-  const [gitHubProjects, setGitHubProjects] = React.useState(
-    [],
-  );
-  const [gitHubColumns, setGitHubColumns] = React.useState([]);
+  const [AzureProjects, setAzureProjects] = React.useState([]);
+  const [AzureColumns, setAzureColumns] = React.useState([]);
 
   /**
    * Store selection options
@@ -24,57 +18,57 @@ const Selection = ({
     id: 0,
   });
 
-  // Fetch Projects from GitHub
+  // Fetch Projects from Azure
   /*React.useEffect(() => {
-    const getGitHubProjects = async () => {
+    const getAzureProjects = async () => {
       try {
-        const gitHubProjects = await fetchGitHubProjects(username, repo);
-        setGitHubProjects([...gitHubProjects]);
+        const AzureProjects = await fetchAzureProjects(username, repo);
+        setAzureProjects([...AzureProjects]);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getGitHubProjects();
+    getAzureProjects();
   }, []);
 
   // Fetch Columns from selected Project
   React.useEffect(() => {
-    const getGitHubColumns = async () => {
-      if (gitHubProjects.length > 0) {
+    const getAzureColumns = async () => {
+      if (AzureProjects.length > 0) {
         try {
-          const gitHubColumns = await fetchGitHubColumns(
-            gitHubProjects
+          const AzureColumns = await fetchAzureColumns(
+            AzureProjects
               .filter((project) => project.id !== selectedProject.id)[0]
               .id.toString(),
           );
-          setGitHubColumns([...gitHubColumns]);
+          setAzureColumns([...AzureColumns]);
         } catch (error) {
           console.error(error);
         }
       }
     };
 
-    getGitHubColumns();
-  }, [gitHubProjects]);*/
+    getAzureColumns();
+  }, [AzureProjects]);*/
 
-  // After fetching columns from GitHub, set default to the first one
+  // After fetching columns from Azure, set default to the first one
   React.useEffect(() => {
-    onSelectColumn(gitHubColumns[0]);
-  }, [gitHubColumns]);
+    onSelectColumn(AzureColumns[0]);
+  }, [AzureColumns]);
 
   return (
     <div className="selection-container">
       <Select
-        label="Select GitHub Project"
+        label="Select Azure Project"
         required={true}
-        options={gitHubProjects}
+        options={AzureProjects}
         onChange={(e) => setSelectedProject(JSON.parse(e.target.value))}
       />
       <Select
         label="Column"
         required={true}
-        options={gitHubColumns}
+        options={AzureColumns}
         onChange={(e) => onSelectColumn(JSON.parse(e.target.value))}
       />
       <ColorPicker

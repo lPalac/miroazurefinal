@@ -1,7 +1,7 @@
 import * as React from "react";
 import Tag from "../Tag";
 
-const GitHubIssueRow = ({ title, date, status, onSelect }) => {
+const AzureIssueRow = ({ title, date, status, onSelect }) => {
   const issueDate = new Date();
   const month = issueDate.getUTCMonth() + 1;
   const day = issueDate.getUTCDate();
@@ -22,7 +22,7 @@ const GitHubIssueRow = ({ title, date, status, onSelect }) => {
     <>
       <div className="grid-checkbox"></div>
       <div className="grid-title">
-        <p className="github-issue-title">{title}</p>
+        <p className="Azure-issue-title">{title}</p>
       </div>
       <div className="grid-status">
         <Tag status={status} color={color} />
@@ -34,4 +34,4 @@ const GitHubIssueRow = ({ title, date, status, onSelect }) => {
   );
 };
 
-export default GitHubIssueRow;
+export default AzureIssueRow;
