@@ -1,13 +1,13 @@
 import { getStatusColor, supabase } from "./index.js";
 
-export const insertGitHubAppCards = async (PBIs) => {
+export const insertAzureAppCards = async (PBIs) => {
   await Promise.all(
     PBIs.map(async (issue, index) => {
       //  Get current Miro board
       const info = await miro.board.getInfo();
 
       // Get issue status color
-      const color = "#FAFAfa";
+      const color = getStatusColor(issue.state);
       // Create App Card
       const appCard = await miro.board.createAppCard({
         x: index * 350,

@@ -1,10 +1,10 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { GitHubIssueHeader, Loader } from "./components";
-import { insertGitHubAppCards } from "./utils/miro";
+import { insertAzureAppCards } from "./utils/miro";
 
 import { fetchGitHubIssues } from "./issues.js";
-import { getStatusColor } from "./utils";
+import { getStatusColor, Legend } from "./utils";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
   const [selectedPBIs, setSelectedPBIs] = React.useState([]);
@@ -59,7 +59,7 @@ const Modal = () => {
         console.error("No PBIs selected");
         return;
       }
-      await insertGitHubAppCards(selected);
+      await insertAzureAppCards(selected);
       await miro.board.ui.closeModal();
     } catch (error) {
       console.error(error);
