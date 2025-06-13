@@ -1,10 +1,11 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { GitHubIssueHeader, Loader } from "./components";
-import { insertAzureAppCards } from "./utils/miro";
+import { GitHub } from "./components/index.js";
+import { insertAzureAppCards } from "./utils/miro.js";
 
 import { fetchGitHubIssues } from "./issues.js";
-import { getStatusColor, Legend } from "./utils";
+import { getStatusColor } from "./utils";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
   const [selectedPBIs, setSelectedPBIs] = React.useState([]);

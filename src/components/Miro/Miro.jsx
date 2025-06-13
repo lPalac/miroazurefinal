@@ -76,7 +76,7 @@ const Miro = () => {
         disabled={!itemsSelected}
         onClick={() => handleCreateGitHubCards(selectedItems)}
       >
-        Convert to GitHub card
+        Convert to AzureDevOps card
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-export { insertGitHubAppCards } from "./miro";
+export { insertAzureAppCards } from "./miro";
 
 export { getStatusColor } from "./getColor";
 export { supabase } from "./supabase";
