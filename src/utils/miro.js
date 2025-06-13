@@ -9,7 +9,6 @@ export const insertAzureAppCards = async (PBIs) => {
       // Get issue status color
       //const color = getStatusColor(issue.state);
       const color = getStatusColor(issue.state);
-      console.log("Color: ", color);
 
       // Create App Card
       const appCard = await miro.board.createAppCard({
