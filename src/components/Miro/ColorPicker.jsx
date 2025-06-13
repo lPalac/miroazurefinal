@@ -1,10 +1,7 @@
 import * as React from "react";
 import { CirclePicker } from "react-color";
 
-const ColorPicker = ({
-  color,
-  setColor,
-}) => {
+const ColorPicker = ({ color, setColor }) => {
   const colors = [
     "#1A1A1A",
     "#414BB2",

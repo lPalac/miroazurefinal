@@ -122,21 +122,23 @@ const Modal = () => {
           </>
         )}
       </div>
-      <button
-        className="button button-primary"
-        type="button"
-        onClick={handleImportClick}
-        // disabled={selectedGitHubIssues.length === 0}
-      >
-        Import
-      </button>
-      <button
-        className="button button-primary"
-        type="button"
-        onClick={() => fetchGitHubIssues(3458764631645069034)}
-      >
-        TEST
-      </button>
+      <div className="appcard-modal-button-container">
+        <button
+          className="button button-primary"
+          type="button"
+          onClick={handleImportClick}
+          // disabled={selectedGitHubIssues.length === 0}
+        >
+          Import
+        </button>
+        <button
+          className="button button-secondary"
+          type="button"
+          onClick={() => fetchGitHubIssues(3458764631645069034)}
+        >
+          TEST
+        </button>
+      </div>
     </div>
   );
 };

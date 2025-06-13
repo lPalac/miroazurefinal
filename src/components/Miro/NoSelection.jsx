@@ -6,9 +6,8 @@ const NoSelection = () => {
       <h3>Select from Miro board</h3>
       <p>
         From the board, select at least a sticky note or a card to convert it to
-        a GitHub card.
+        a AzureDevOps PBI.
       </p>
-
     </>
   );
 };

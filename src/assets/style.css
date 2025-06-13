@@ -8,21 +8,9 @@
 
 html {
   height: 100%;
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Helvetica Neue,
-    Arial,
-    Noto Sans,
-    sans-serif,
-    Apple Color Emoji,
-    Segoe UI Emoji,
-    Segoe UI Symbol,
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Noto Color Emoji;
 }
 
@@ -142,7 +130,7 @@ p {
 .grid-checkbox {
   grid-column-start: checkbox-start;
   grid-column-end: title-start;
-  height: 100%;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -164,7 +152,7 @@ p {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0px 24px;
+  padding: 0px 12px;
 }
 
 .grid-date {
@@ -178,7 +166,7 @@ p {
 
 .github-issue-title {
   padding: 0px 12px;
-  border-left: 4px solid #6799f5;
+  border-left: 4px solid #6799d5;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -238,7 +226,7 @@ p {
 */
 
 .checkbox {
-  margin-bottom: 20px;
+  margin: 8px 0px 10px 12px;
 }
 
 /*
