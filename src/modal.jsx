@@ -75,6 +75,27 @@ const Modal = () => {
   };
   return (
     <div>
+      <div className="azure-header">
+        <h1 className="azure-modal-title">Import Azure DevOps PBIs</h1>
+        <button
+          className="button button-primary"
+          type="button"
+          onClick={handleImportClick}
+          disabled={selectedPBIs.length === 0}
+        >
+          Import
+        </button>
+      </div>
+      <div className="appcard-modal-button-container">
+        <button
+          className="button button-secondary"
+          type="button"
+          //TODO: remove this button
+          onClick={() => fetchGitHubIssues(3458764631645069034)}
+        >
+          TEST
+        </button>
+      </div>
       <div className="modal-grid">
         {PBIs.length === 0 ? (
           <div className="loader-container">
@@ -121,25 +142,6 @@ const Modal = () => {
             ))}
           </>
         )}
-      </div>
-      <div className="appcard-modal-button-container">
-        <button
-          className="button button-primary"
-          type="button"
-          onClick={handleImportClick}
-          disabled={selectedPBIs.length === 0}
-        >
-          Import
-        </button>
-
-        <button
-          className="button button-secondary"
-          type="button"
-          //TODO: remove this button
-          onClick={() => fetchGitHubIssues(3458764631645069034)}
-        >
-          TEST
-        </button>
       </div>
     </div>
   );

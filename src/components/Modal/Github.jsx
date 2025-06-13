@@ -17,10 +17,10 @@ const GitHub = () => {
   };
 
   return (
-    <div className="github-container">
-      <h3>Synced changes</h3>
+    <div className="azure-container">
+      <h3>Import All PBIs from AzureDevOps</h3>
       <p>
-        any changes you apply, either in Miro or in AzureDevOps, are synced
+        Any changes you apply, either in Miro or in AzureDevOps, are synced
         between both tools.
       </p>
       <h3>Legend</h3>
