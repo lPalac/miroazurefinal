@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/assets/style.css" />
-    <script src="https://miro.com/app/static/sdk/v2/miro.js"></script>
-    <title>Mirotest</title>
-  </head>
-  <body>
-    <div id="root" aria-hidden="true">
-      <div class="grid container">
-        <div class="cs1 ce12">
-          <img src="/src/assets/welcome.png" alt="" />
-        </div>
-        <div class="cs1 ce12">
-          <p style="font-size: large">Great, your app is running locally</p>
-          <p>
-            You can now create your Developer team to get your app running in
-            Miro.
-          </p>
-        </div>
-        <div class="cs1 ce12">
-          <a
-            class="button button-primary"
-            href="https://developers.miro.com/docs/create-a-developer-team"
-            target="_blank"
-          >
-            Create a Developer team
-          </a>
-        </div>
-        <div class="cs1 ce12">
-          <p>To see your app, open it in a app panel on Miro.com, or preview it at <a href="/app.html" class="link link-primary">this url</a></p>
-        </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/assets/style.css" />
+  <script src="https://miro.com/app/static/sdk/v2/miro.js"></script>
+  <title>Mirotest</title>
+</head>
+
+<body>
+  <div id="root" aria-hidden="true">
+    <div class="grid container">
+
+      <div class="cs1 ce12">
+        <img src="/src/assets/welcome.png" alt="" />
+      </div>
+
+
+
+      <div class="cs1 ce12">
+        <h1>Dobrodošli u PBI Tracker</h1>
+        <p>
+          Ovdje pratimo Product Backlog Items (PBI) kroz sve faze razvoja.
+          Od trenutka kada su "Novi", preko "U radu" i "Pregled koda", pa sve do "Završeno". Cilj je osigurati jasnu
+          vizualizaciju napretka
+          i optimizirati suradnju tima.
+        </p>
+        <p style="font-size: large">
+          Your app running in locally and in Miro app panel.
+        </p>
+      </div>
+      <img src="https://via.placeholder.com/400x250.png?text=Va%C5%A1a+vizualizacija+ovdje"
+        alt="Ilustracija PBI workflowa" />
+      <div class="cs1 ce12">
+        <a href="https://miro.com/app/board/uXjVIDa5ATQ=/" rel="noopener noreferrer" class="button button-primary">
+          Otvori Miro board
+        </a>
+        <a class="button button-secondary" href="https://github.com/lPalac/miroazurefinal" target="_blank">
+          Odi na gitHub repo
+        </a>
+      </div>
+      <div class="cs1 ce12">
+        <p>Da pročitate teoretski dio diplomskog možete otići na <br><a
+            href="https://docs.google.com/document/d/1cokDu6u6S9vuJ3rmFSI4gzw-Vp5EsMgy/edit?usp=sharing&ouid=111856939962033456263&rtpof=true&sd=true"
+            target="_blank" class="link link-primary">link
+            za
+            Diplomski </a>
+        </p>
       </div>
     </div>
-    <script type="module" src="/src/index.js"></script>
-  </body>
+  </div>
+
+  <script type="module" src="/src/index.js"></script>
+</body>
+
 </html>

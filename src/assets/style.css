@@ -51,9 +51,21 @@ p {
 .button {
   text-decoration: none;
 }
-
-#root {
-  height: 100%;
+.button-primary {
+  background-color: var(--indigo500);
+  color: #ffffff;
+  padding: var(--space-medium) var(--space-large);
+  border-radius: var(--border-radius-medium);
+  font-weight: bold;
+  font-size: 14px;
+}
+.button-secondary {
+  background-color: var(--indigo100);
+  color: var(--indigo500);
+  padding: var(--space-medium) var(--space-large);
+  border-radius: var(--border-radius-medium);
+  font-weight: bold;
+  font-size: 14px;
 }
 
 /*
