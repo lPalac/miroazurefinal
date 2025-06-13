@@ -95,35 +95,6 @@ function App() {
   }, [gitHubProjects]);*/
 
   const handleSaveClick = async () => {
-    /*const { data, error } = await supabase
-      .table("PBI-mapping")
-      .select(
-        "id, miroCardId::text, gitHubIssueId, miroUserId::text, gitHubUsername, created_at, miroBoardId, gitHubIssueNumber, gitHubProjectCardId",
-      )
-      .eq("miroCardId", appCardId);
-
-    if (error) {
-      console.error(error);
-    }
-    if (data) {
-      Promise.all(
-        data.map(async (item) => {
-          const gitHubIssueNumber = item.gitHubIssueNumber;
-          const color = await getStatusColor(selectedColumn.name);
-
-          // Update GitHub Issue
-          await updateGitHubIssue(username, repo, gitHubIssueNumber, {
-            title: newTitle,
-            body: newDescription,
-          });
-
-          // Update GitHub Project Card
-          await updateGitHubProjectCard(item.gitHubProjectCardId, {
-            columnId: selectedColumn.id,
-            card_id: item.gitHubProjectCardId,
-            position: "top",
-          });
-*/
     // Update App Card via SDK
     const [currentAppCard] = await miro.board.get({ id: appCardId });
     const queryString = window.location.search;
@@ -146,7 +117,6 @@ function App() {
       currentAppCard.style.cardTheme = "#DADAda";
       */
       await currentAppCard.sync();
-      const project = "7interactive-DiVerso";
       const pbisRepsonse = await fetch(
         `https://dev.azure.com/lilcodelab/_apis/wit/workitems/${PBIId}?api-version=7.1`,
         {
@@ -164,7 +134,7 @@ function App() {
           ]),
         }
       ).then((res) => res.json());
-
+      //TODO remove console.log
       console.log("PBI updated:", pbisRepsonse);
       await miro.board.ui.closeModal();
     }

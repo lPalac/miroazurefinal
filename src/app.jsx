@@ -19,7 +19,7 @@ function App() {
               className={`tab ${selectedTab === "github" && "tab-active"}`}
               onClick={() => handleSelectTab("github")}
             >
-              <div className="tab-text tab-badge">Choose from GitHub</div>
+              <div className="tab-text tab-badge">Choose from AzureDevOps</div>
             </div>
             <div
               tabIndex={0}

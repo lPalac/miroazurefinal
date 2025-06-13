@@ -127,13 +127,15 @@ const Modal = () => {
           className="button button-primary"
           type="button"
           onClick={handleImportClick}
-          // disabled={selectedGitHubIssues.length === 0}
+          disabled={selectedPBIs.length === 0}
         >
           Import
         </button>
+
         <button
           className="button button-secondary"
           type="button"
+          //TODO: remove this button
           onClick={() => fetchGitHubIssues(3458764631645069034)}
         >
           TEST
