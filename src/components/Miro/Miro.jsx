@@ -70,7 +70,6 @@ const Miro = () => {
           color={selectedColor}
         />
       )}
-
       <button
         className="button button-primary"
         disabled={!itemsSelected}

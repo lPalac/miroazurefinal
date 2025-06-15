@@ -1,4 +1,5 @@
 import * as React from "react";
+import "../../assets/style.css";
 
 const statuses = [
   { name: "New", color: "#1F77B4" },
@@ -18,36 +19,14 @@ const Azure = () => {
 
   return (
     <div className="azure-container">
-      <h3>Import PBIs from Azure DevOps</h3>
+      <h3>
+        Import PBIs <br />
+        from Azure DevOps
+      </h3>
       <p>
         Any changes you apply, either in Miro or in AzureDevOps, are synced
         between both tools.
       </p>
-      <h3>Legend</h3>
-      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-        {statuses.map((status) => (
-          <li
-            key={status.name}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "8px",
-            }}
-          >
-            <span
-              style={{
-                display: "inline-block",
-                width: "16px",
-                height: "16px",
-                backgroundColor: status.color,
-                marginRight: "8px",
-                borderRadius: "3px",
-              }}
-            />
-            <span>{status.name}</span>
-          </li>
-        ))}
-      </ul>
       <button
         className="button button-primary"
         type="button"
@@ -55,6 +34,20 @@ const Azure = () => {
       >
         Choose from AzureDevOps PBIs
       </button>
+      <h3>States</h3>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        {statuses.map((status) => (
+          <li className="status-item" key={status.name}>
+            <span
+              className="status-color-box"
+              style={{
+                backgroundColor: status.color,
+              }}
+            />
+            <span>{status.name}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

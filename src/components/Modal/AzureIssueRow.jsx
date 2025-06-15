@@ -11,7 +11,7 @@ const AzureIssueRow = ({ title, date, status, onSelect }) => {
 
   React.useEffect(() => {
     async function generateStatusColor() {
-      const color = "#fafa";
+      const color = "#fafafa";
       setColor(color);
     }
 

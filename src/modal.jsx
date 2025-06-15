@@ -4,7 +4,6 @@ import { AzureIssueHeader, Loader } from "./components";
 import { Azure } from "./components/index.js";
 import { insertAzureAppCards } from "./utils/miro.js";
 
-import { fetchAzureIssues } from "./issues.js";
 import { getStatusColor } from "./utils";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
@@ -86,16 +85,7 @@ const Modal = () => {
           Import
         </button>
       </div>
-      <div className="appcard-modal-button-container">
-        <button
-          className="button button-secondary"
-          type="button"
-          //TODO: remove this button
-          onClick={() => fetchAzureIssues(3458764631645069034)}
-        >
-          TEST
-        </button>
-      </div>
+
       <div className="modal-grid">
         {PBIs.length === 0 ? (
           <div className="loader-container">
