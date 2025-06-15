@@ -56,10 +56,7 @@ const Modal = () => {
   const handleImportClick = async () => {
     try {
       const selected = PBIs.filter((pbi) => selectedPBIs.includes(pbi.id));
-      if (selected.length === 0) {
-        console.error("No PBIs selected");
-        return;
-      }
+
       await insertAzureAppCards(selected);
       await miro.board.ui.closeModal();
     } catch (error) {

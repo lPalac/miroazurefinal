@@ -5,7 +5,6 @@ import { getStatusColor } from "./utils";
 //TODO maknit ako necu koristit import Select from "./components/Select";
 
 function App() {
-  // Keep information about app card in state
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   console.log(window.location.search, "window.location.search");
@@ -32,15 +31,6 @@ function App() {
     id: 0,
   });
 
-  /**
-   * Store selected column options
-   */
-  const [selectedColumn, setSelectedColumn] = React.useState({
-    name: "",
-    id: 0,
-  });
-
-  // Get and store appCardId, title, and description from window location
   React.useEffect(() => {
     // Get URL parameters
 
@@ -78,27 +68,6 @@ function App() {
     getAzureProjects();
   }, []);*/
 
-  // Fetch Azure Columns
-  /* React.useEffect(() => {
-    const getAzureColumns = async () => {
-      if (AzureProjects.length > 0) {
-        try {
-          const AzureColumns = await fetchAzureColumns(
-            AzureProjects
-              .filter((project) => project.id !== selectedProject.id)[0]
-              .id.toString(),
-          );
-
-          setAzureColumns([...AzureColumns]);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
-
-    getAzureColumns();
-  }, [AzureProjects]);*/
-
   const handleSaveClick = async () => {
     // Update App Card via SDK
     const [currentAppCard] = await miro.board.get({ id: appCardId });
@@ -118,14 +87,17 @@ function App() {
 
       //currentAppCard.description = "d";
       currentAppCard.fields = [...currentAppCard.fields];
+
       currentAppCard.fields[0] = {
         value: newState,
         iconShape: "square",
         fillColor: getStatusColor(newState),
         textColor: "#000000",
-        tooltip: "test",
+        tooltip: "Status",
         iconUrl: "https://cdn-icons-png.flaticon.com/512/3867/3867669.png",
       };
+      currentAppCard.style.cardTheme = getStatusColor(newState);
+      currentAppCard.style.fillBackground = true;
 
       if (newState !== currentStatus) {
         patchOperations.push({
