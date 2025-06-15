@@ -2,6 +2,7 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import { Input } from "./components";
 import { getStatusColor } from "./utils";
+//TODO maknit ako necu koristit import Select from "./components/Select";
 
 function App() {
   // Keep information about app card in state
@@ -172,10 +173,21 @@ function App() {
         value={newDescription}
         onChange={(value) => setNewDescription(value)}
       />
-      <a>State</a>
+
+      {/* TODO dodat mozda komponentu select umjesto 
+<div className="selection-container">
+        <Select
+          label="PBI State"
+          required={true}
+          options={AzureProjects}
+          onChange={(e) => setSelectedProject(JSON.parse(e.target.value))}
+        />
+      </div> */}
+
+      <label className="select-label">State</label>
       <select
         label="State"
-        className="appcard-modal-select"
+        className="select"
         value={newState}
         onChange={(e) => {
           const value = e.target.value;
@@ -190,6 +202,7 @@ function App() {
         <option value="Blocked">Blocked</option>
         <option value="Done">Done</option>
       </select>
+
       <div className="appcard-modal-button-container">
         <button className="button button-primary" onClick={handleSaveClick}>
           Save

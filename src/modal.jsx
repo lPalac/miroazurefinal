@@ -1,7 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { AzureIssueHeader, Loader } from "./components";
-import { Azure } from "./components/index.js";
 import { insertAzureAppCards } from "./utils/miro.js";
 
 import { getStatusColor } from "./utils";
@@ -11,6 +10,8 @@ const Modal = () => {
   React.useEffect(() => {
     const getPBIs = async () => {
       const project = "7interactive-DiVerso";
+
+      // Fetch PBIs from Azure DevOps
 
       const pbiResponse = await fetch(
         `https://dev.azure.com/lilcodelab/${project}/_apis/wit/wiql?top=200&api-version=7.1`,
