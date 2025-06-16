@@ -4,33 +4,29 @@ import { Input } from "./components";
 import { getStatusColor } from "./utils";
 import linkIcon from "./assets/10758963_link_iconfinder.svg";
 import Tag from "./components/Tag.jsx";
-//TODO maknit ako necu koristit import Select from "./components/Select";
+import Select from "./components/Select.jsx";
 
 function App() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const PBIId = urlParams.get("PBIId");
-  console.log(window.location.search, "window.location.search");
   const [appCardId, setAppCardId] = React.useState("");
   const [newTitle, setNewTitle] = React.useState("");
   const [newState, setNewState] = React.useState(() => {
     return urlParams.get("currentStatus") || "New";
   });
-
+  const statuses = [
+    { value: "New", label: "New" },
+    { value: "Approved", label: "Approved" },
+    { value: "Committed", label: "Commited" },
+    { value: "Dev Review", label: "Dev Review" },
+    { value: "Blocked", label: "Blocked" },
+    { value: "Done", label: "Done" },
+  ];
   /**
    * Store information pulled from Azure API
    */
-  const [AzureProjects, setAzureProjects] = React.useState([]);
   const [AzureColumns, setAzureColumns] = React.useState([{ name: "", id: 0 }]);
-
-  /**
-   * Store selected project options
-   */
-  const [selectedProject, setSelectedProject] = React.useState({
-    name: "",
-    body: "",
-    id: 0,
-  });
 
   React.useEffect(() => {
     // Get URL parameters
@@ -51,22 +47,6 @@ function App() {
     }
   }, [AzureColumns]);
 
-  // Fetch Azure Projects
-  /*React.useEffect(() => {
-    const getAzureProjects = async () => {
-      try {
-        const AzureProjects = await fetchAzureProjects(username, repo);
-
-        setAzureProjects([...AzureProjects]);
-        setSelectedProject(AzureProjects[0]);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getAzureProjects();
-  }, []);*/
-
   const handleSaveClick = async () => {
     // Update App Card via SDK
     const [currentAppCard] = await miro.board.get({ id: appCardId });
@@ -83,10 +63,7 @@ function App() {
     ];
     if (currentAppCard) {
       currentAppCard.title = newTitle;
-
-      //currentAppCard.description = "d";
       currentAppCard.fields = [...currentAppCard.fields];
-
       currentAppCard.fields[0] = {
         value: newState,
         iconShape: "square",
@@ -149,33 +126,16 @@ function App() {
         onChange={(value) => setNewTitle(value)}
       />
 
-      {/* TODO dodat mozda komponentu select umjesto 
-<div className="selection-container">
-        <Select
-          label="PBI State"
-          required={true}
-          options={AzureProjects}
-          onChange={(e) => setSelectedProject(JSON.parse(e.target.value))}
-        />
-      </div> */}
-
-      <label className="select-label">State</label>
-      <select
+      <Select
         label="State"
-        className="select"
         value={newState}
+        required={true}
+        options={statuses}
         onChange={(e) => {
           const value = e.target.value;
           setNewState(value);
         }}
-      >
-        <option value="New">New</option>
-        <option value="Approved">Approved</option>
-        <option value="Committed">Committed</option>
-        <option value="Dev Review">Dev Review</option>
-        <option value="Blocked">Blocked</option>
-        <option value="Done">Done</option>
-      </select>
+      />
 
       <div className="appcard-modal-button-container">
         <button className="button button-primary" onClick={handleSaveClick}>

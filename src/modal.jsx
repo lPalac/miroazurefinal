@@ -10,7 +10,6 @@ const Modal = () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const project = urlParams.get("project");
-  console.log(project);
   React.useEffect(() => {
     const getPBIs = async () => {
       // Fetch PBIs from Azure DevOps

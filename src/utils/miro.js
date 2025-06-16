@@ -40,7 +40,6 @@ export const insertAzureAppCards = async (PBIs) => {
         ],
         status: "connected",
       });
-      console.log(appCard.id);
 
       //await supabase.from("PBI-mapping").select({});
       //TODO check if miroCardId already exists

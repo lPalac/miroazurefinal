@@ -26,9 +26,6 @@ export async function init() {
     });
   });
   miro.board.ui.on("items:delete", async (event) => {
-    //TODO remove
-    console.log(event.items.map((item) => item.id));
-
     const ids = event.items
       .filter((item) => item.type === "app_card")
       .map((item) => item.id);
