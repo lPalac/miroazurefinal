@@ -15,9 +15,10 @@ export const insertAzureAppCards = async (PBIs) => {
         x: index * 350,
         y: 0,
         title: issue.title,
-        description: "issue.body",
+        description: "",
         style: {
           cardTheme: getStatusColor(issue.state),
+          fillBackground: true,
         },
         fields: [
           {
@@ -39,7 +40,6 @@ export const insertAzureAppCards = async (PBIs) => {
         ],
         status: "connected",
       });
-      console.log(appCard.id);
 
       //await supabase.from("PBI-mapping").select({});
       //TODO check if miroCardId already exists
