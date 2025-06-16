@@ -2,16 +2,17 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import { Input } from "./components";
 import { getStatusColor } from "./utils";
+import linkIcon from "./assets/10758963_link_iconfinder.svg";
+import Tag from "./components/Tag.jsx";
 //TODO maknit ako necu koristit import Select from "./components/Select";
 
 function App() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
+  const PBIId = urlParams.get("PBIId");
   console.log(window.location.search, "window.location.search");
-
   const [appCardId, setAppCardId] = React.useState("");
   const [newTitle, setNewTitle] = React.useState("");
-  const [newDescription, setNewDescription] = React.useState("");
   const [newState, setNewState] = React.useState(() => {
     return urlParams.get("currentStatus") || "New";
   });
@@ -36,16 +37,14 @@ function App() {
 
     const appCardId = urlParams.get("appCardId");
     const appCardTitle = urlParams.get("appCardTitle");
-    const appCardDescription = urlParams.get("appCardDescription");
     const currentStatus = urlParams.get("currentStatus");
-    if (appCardId && appCardTitle && appCardDescription && currentStatus) {
+    if (appCardId && appCardTitle && currentStatus) {
       const status = AzureColumns.find(
         (column) => column.name === currentStatus
       );
 
       setAppCardId(appCardId);
       setNewTitle(appCardTitle);
-      setNewDescription(appCardDescription);
       if (status) {
         setSelectedColumn(status);
       }
@@ -74,7 +73,7 @@ function App() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const currentStatus = urlParams.get("currentStatus");
-    const PBIId = urlParams.get("PBIId");
+
     const patchOperations = [
       {
         op: "replace",
@@ -130,20 +129,24 @@ function App() {
 
   return (
     <div className="appcard-modal-container">
-      <h1>Edit Azure card</h1>
+      <div className="appcard-modal-header">
+        <h1>Edit Azure card</h1>
+        <Tag status={{ name: newState }} color={getStatusColor(newState)} />
+        <a
+          href={`https://dev.azure.com/lilcodelab/_workitems/edit/${PBIId}`}
+          target="_blank"
+          rel="noreferrer"
+          className="appcard-modal-link"
+        >
+          <img src={linkIcon} alt="PBI link" />
+        </a>
+      </div>
       <Input
         label="Title"
         required
         placeholder="Title"
         value={newTitle.replace(/<\/?[^>]+(>|$)/g, "")}
         onChange={(value) => setNewTitle(value)}
-      />
-      <Input
-        label="Description"
-        required
-        placeholder="Description"
-        value={newDescription}
-        onChange={(value) => setNewDescription(value)}
       />
 
       {/* TODO dodat mozda komponentu select umjesto 
@@ -163,7 +166,6 @@ function App() {
         value={newState}
         onChange={(e) => {
           const value = e.target.value;
-          console.log("Selected column:", value);
           setNewState(value);
         }}
       >

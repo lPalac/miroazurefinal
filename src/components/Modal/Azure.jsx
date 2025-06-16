@@ -10,21 +10,23 @@ const statuses = [
   { name: "Blocked", color: "#D62728" },
   { name: "Done", color: "#28A745" },
 ];
+
 const Azure = () => {
+  const projectsList = [
+    { value: "7interactive-DiVerso", label: "7interactive DiVerso" },
+    { value: "HastyForge", label: "Hasty Forge" },
+    { value: "Piel", label: "Piel" },
+    { value: "TokyoPeople", label: "Tokyo People" },
+  ];
+  const [project, setProject] = React.useState(projectsList[0].value);
+
   const handleChooseAzureClick = async () => {
     miro.board.ui.openModal({
-      url: "modal.html",
+      url: `modal.html?project=${project}`,
       fullscreen: false,
     });
   };
-  const projectsArray = [
-    "Piel",
-    "Tokyo People",
-    "7interactive",
-    "Ask2Ai",
-    "KTM",
-    "Končar",
-  ];
+
   /*
   React.useEffect(() => {
     const [azureProject, setAzureProject] = React.useState([]);
@@ -67,14 +69,23 @@ const Azure = () => {
         between both tools.
       </p>
       <div className="selection-container">
-        <Select
+        <label className="select-label">State</label>
+        <select
           label="Select Azure Project"
+          className="select"
+          value={project}
           required={true}
-          //TODO fetch projects from Azure DevOps and make color#222222
-          options={projectsArray}
-          value={JSON.stringify("7interactive")}
-          onChange={(e) => setSelectedProject(JSON.parse(e.target.value))}
-        />
+          onChange={(e) => {
+            const value = e.target.value;
+            setProject(value);
+          }}
+        >
+          {projectsList.map((project) => (
+            <option key={project.value} value={project.value}>
+              {project.label}
+            </option>
+          ))}
+        </select>
       </div>
       <button
         className="button button-primary"

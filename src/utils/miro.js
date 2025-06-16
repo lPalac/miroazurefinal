@@ -15,7 +15,7 @@ export const insertAzureAppCards = async (PBIs) => {
         x: index * 350,
         y: 0,
         title: issue.title,
-        description: "issue.body",
+        description: "",
         style: {
           cardTheme: getStatusColor(issue.state),
           fillBackground: true,

@@ -7,10 +7,12 @@ import { getStatusColor } from "./utils";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
   const [selectedPBIs, setSelectedPBIs] = React.useState([]);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const project = urlParams.get("project");
+  console.log(project);
   React.useEffect(() => {
     const getPBIs = async () => {
-      const project = "7interactive-DiVerso";
-
       // Fetch PBIs from Azure DevOps
 
       const pbiResponse = await fetch(
@@ -26,10 +28,10 @@ const Modal = () => {
           }),
         }
       ).then((res) => res.json());
-      const PBIsID = pbiResponse.workItems.map((pbi) => pbi.id);
+      const PBIsID = pbiResponse.workItems.map((pbi) => pbi.id).slice(0, 199);
 
       const response = await fetch(
-        `https://dev.azure.com/lilcodelab/7interactive-DiVerso/_apis/wit/workitems?ids=${PBIsID.join(
+        `https://dev.azure.com/lilcodelab/${project}/_apis/wit/workitems?ids=${PBIsID.join(
           ","
         )}&api-version=7.1`,
         {
@@ -44,13 +46,14 @@ const Modal = () => {
           id: item.id,
           title: item.fields["System.Title"],
           state: item.fields["System.State"],
-          description: item.fields["System.Description"],
+          url: `https://dev.azure.com/lilcodelab/_workitems/edit/${item.id}`,
           create_at: item.fields["System.CreatedDate"],
           assignedTo:
             item.fields["System.AssignedTo"]?.displayName || "Unassigned",
         }))
       );
     };
+
     getPBIs();
   }, []);
   const handleImportClick = async () => {
@@ -106,7 +109,14 @@ const Modal = () => {
                   </label>
                 </div>
                 <div className="grid-title">
-                  <p className="Azure-issue-title">{issue.title}</p>
+                  <a
+                    className="azure-issue-title"
+                    href={issue.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {issue.title}
+                  </a>
                 </div>
 
                 <div className="grid-status">

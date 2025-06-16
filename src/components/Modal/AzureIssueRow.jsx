@@ -1,5 +1,5 @@
 import * as React from "react";
-import Tag from "../Tag";
+import Tag from "../Tag.jsx";
 
 const AzureIssueRow = ({ title, date, status, onSelect }) => {
   const issueDate = new Date();
@@ -22,7 +22,7 @@ const AzureIssueRow = ({ title, date, status, onSelect }) => {
     <>
       <div className="grid-checkbox"></div>
       <div className="grid-title">
-        <p className="Azure-issue-title">{title}</p>
+        <p className="azure-issue-title">{title}</p>
       </div>
       <div className="grid-status">
         <Tag status={status} color={color} />
