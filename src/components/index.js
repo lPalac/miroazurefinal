@@ -1,4 +1,3 @@
-export { default as Miro } from "./Miro/Miro";
 export { default as Azure } from "./Modal/Azure";
 export { default as AzureIssueRow } from "./Modal/AzureIssueRow";
 export { default as AzureIssueHeader } from "./Modal/AzureIssueHeader";

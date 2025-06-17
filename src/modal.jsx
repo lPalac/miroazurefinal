@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { AzureIssueHeader, Loader } from "./components";
 import { insertAzureAppCards } from "./utils/miro.js";
 
-import { getStatusColor } from "./utils";
+import { getStatusColor, supabase } from "./utils";
 const Modal = () => {
   const [PBIs, setPBIs] = React.useState([]);
   const [selectedPBIs, setSelectedPBIs] = React.useState([]);
@@ -27,10 +27,17 @@ const Modal = () => {
           }),
         }
       ).then((res) => res.json());
-      const PBIsID = pbiResponse.workItems.map((pbi) => pbi.id).slice(0, 199);
+      const { data, error } = await supabase
+        .from("PBI-mapping")
+        .select("azurePBIId");
+      const allPBIs = data.map((pbi) => Number(pbi.azurePBIId));
+      const PBIsId = pbiResponse.workItems
+        .map((pbi) => pbi.id)
+        .filter((id) => !allPBIs.includes(id))
+        .slice(0, 199);
 
       const response = await fetch(
-        `https://dev.azure.com/lilcodelab/${project}/_apis/wit/workitems?ids=${PBIsID.join(
+        `https://dev.azure.com/lilcodelab/${project}/_apis/wit/workitems?ids=${PBIsId.join(
           ","
         )}&api-version=7.1`,
         {
