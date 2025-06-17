@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Loader } from "./components";
 
 function App() {
-  //TODO remove temp when deployed on server
+  //TODO remove temp after styliing this page when deployed on server
   const [userId, setUserId] = React.useState("temp");
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);

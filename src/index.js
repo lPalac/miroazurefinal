@@ -7,7 +7,10 @@ export async function init() {
   miro.board.ui.on("app_card:open", (event) => {
     const { appCard } = event;
     //TODO change base URL
-    const baseUrl = "http://localhost:3000";
+    //const baseUrl = "http://localhost:3000";
+
+    const baseUrl = import.meta.env.VITE_FE_URL;
+
     let currentStatus, PBIId;
 
     if (appCard.fields) {
