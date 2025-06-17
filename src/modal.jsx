@@ -20,7 +20,7 @@ const Modal = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Basic bHVrYS5wYWxhY0BsaXR0bGVjb2RlLmNvbTp0QWxxYW1xTXE5eXFGM1k1NUpoSDVBUG5OcXlqNkpmOG12Qk16Qk5Cdmw0QXNkQ3k3dlJiSlFRSjk5QkZBQ0FBQUFBdjZYWnZBQUFTQVpETzRhTUg=`,
+            Authorization: `Basic  ${import.meta.env.VITE_AZURE_ACCESS_TOKEN}`,
           },
           body: JSON.stringify({
             query: `SELECT [System.Id] FROM WorkItems WHERE [System.TeamProject] ='${project}' ORDER BY [System.ChangedDate] DESC`,
@@ -42,7 +42,7 @@ const Modal = () => {
         )}&api-version=7.1`,
         {
           headers: {
-            Authorization: `Basic bHVrYS5wYWxhY0BsaXR0bGVjb2RlLmNvbTp0QWxxYW1xTXE5eXFGM1k1NUpoSDVBUG5OcXlqNkpmOG12Qk16Qk5Cdmw0QXNkQ3k3dlJiSlFRSjk5QkZBQ0FBQUFBdjZYWnZBQUFTQVpETzRhTUg=`,
+            Authorization: `Basic  ${import.meta.env.VITE_AZURE_ACCESS_TOKEN}`,
           },
         }
       ).then((res) => res.json());

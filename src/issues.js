@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   import.meta.env.VITE_DATABASE_URL,
-  import.meta.env.VITE_SUPABASE_PASSWORD
+  import.meta.env.VITE_SUPABASE_KEY
 );
 //TODO remove this or place it somewhere else
 

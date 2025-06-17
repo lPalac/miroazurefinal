@@ -10,8 +10,8 @@ function App() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const PBIId = urlParams.get("PBIId");
-  const [appCardId, setAppCardId] = React.useState("");
-  const [newTitle, setNewTitle] = React.useState("");
+  const appCardId = urlParams.get("appCardId");
+  const [newTitle, setNewTitle] = React.useState(urlParams.get("appCardTitle"));
   const [newState, setNewState] = React.useState(() => {
     return urlParams.get("currentStatus") || "New";
   });
@@ -23,29 +23,6 @@ function App() {
     { value: "Blocked", label: "Blocked" },
     { value: "Done", label: "Done" },
   ];
-  /**
-   * Store information pulled from Azure API
-   */
-  const [AzureColumns, setAzureColumns] = React.useState([{ name: "", id: 0 }]);
-
-  React.useEffect(() => {
-    // Get URL parameters
-
-    const appCardId = urlParams.get("appCardId");
-    const appCardTitle = urlParams.get("appCardTitle");
-    const currentStatus = urlParams.get("currentStatus");
-    if (appCardId && appCardTitle && currentStatus) {
-      const status = AzureColumns.find(
-        (column) => column.name === currentStatus
-      );
-
-      setAppCardId(appCardId);
-      setNewTitle(appCardTitle);
-      if (status) {
-        setSelectedColumn(status);
-      }
-    }
-  }, [AzureColumns]);
 
   const handleSaveClick = async () => {
     // Update App Card via SDK
@@ -87,7 +64,7 @@ function App() {
         `https://dev.azure.com/lilcodelab/_apis/wit/workitems/${PBIId}?api-version=7.1`,
         {
           headers: {
-            Authorization: `Basic bHVrYS5wYWxhY0BsaXR0bGVjb2RlLmNvbTp0QWxxYW1xTXE5eXFGM1k1NUpoSDVBUG5OcXlqNkpmOG12Qk16Qk5Cdmw0QXNkQ3k3dlJiSlFRSjk5QkZBQ0FBQUFBdjZYWnZBQUFTQVpETzRhTUg=`,
+            Authorization: `Basic ${import.meta.env.VITE_AZURE_ACCESS_TOKEN}`,
             "Content-Type": "application/json-patch+json",
           },
           method: "PATCH",
