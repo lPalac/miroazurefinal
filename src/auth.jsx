@@ -42,16 +42,18 @@ function App() {
         <Loader />
       ) : (
         <div className="auth-container">
-          <p>
+          <p className="auth-text">
             Use boardId and userId in the query parameters of your webhook!
             <span>{userId}</span>
             <br />
-            webhook should look like this:
           </p>
-          <a>
+          <p className="auth-text">
+            URL za service hook bi trebalo izlgleti ovako:
+          </p>
+          <p className="auth-service-hook-url">
             https://azuresyncbe.netlify.app?userId=<span>{userId}</span>
             &boardId=uXjVIosIo5c=/
-          </a>
+          </p>
           <button
             className="button button-primary"
             onClick={handleCopyToClipboard}
