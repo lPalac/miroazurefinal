@@ -43,12 +43,7 @@ function App() {
       ) : (
         <div className="auth-container">
           <p className="auth-text">
-            Use boardId and userId in the query parameters of your webhook!
-            <span>{userId}</span>
-            <br />
-          </p>
-          <p className="auth-text">
-            URL za service hook bi trebalo izlgleti ovako:
+            URL for service hook bi trebalo izgledati ovako:
           </p>
           <p className="auth-service-hook-url">
             https://azuresyncbe.netlify.app?userId=<span>{userId}</span>
@@ -58,13 +53,13 @@ function App() {
             className="button button-primary"
             onClick={handleCopyToClipboard}
           >
-            Copy ID
+            Copy user ID
           </button>
           <div>
             <a
               href={`https://miro.com/app-install-completed/?client_id=${clientId}&team_id=${teamId}`}
             >
-              Return to miro boards
+              nazad na miro boards
             </a>
           </div>
         </div>
