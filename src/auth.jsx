@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { Loader } from "./components";
-
+import 
 function App() {
   //TODO remove temp after styliing this page when deployed on server
   const [userId, setUserId] = React.useState("temp");
@@ -55,6 +55,9 @@ function App() {
           >
             Copy user ID
           </button>
+          <div>
+            <img src="./assets/pasteurl.png" alt="Azure service hook paste" />
+          </div>
           <div>
             <a
               href={`https://miro.com/app-install-completed/?client_id=${clientId}&team_id=${teamId}`}
