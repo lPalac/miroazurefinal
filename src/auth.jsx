@@ -1,6 +1,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { Loader } from "./components";
+import pasteurl from "./assets/pasteurl.png";
 function App() {
   //TODO remove temp after styliing this page when deployed on server
   const [userId, setUserId] = React.useState("temp");
@@ -55,7 +56,7 @@ function App() {
             Copy user ID
           </button>
           <div>
-            <img src="/assets/pasteurl.png" alt="Azure service hook paste" />
+            <img src={pasteurl} alt="Azure service hook paste" />
           </div>
           <div>
             <a
