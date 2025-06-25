@@ -1,7 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { Loader } from "./components";
-import 
 function App() {
   //TODO remove temp after styliing this page when deployed on server
   const [userId, setUserId] = React.useState("temp");
