@@ -40,14 +40,6 @@ p {
   margin: 0px;
 }
 
-.container {
-  max-width: 580px;
-  margin: 0 auto;
-  background-color: var(--indigo50);
-  padding: var(--space-xxxlarge);
-  border-radius: var(--border-radius-xlarge);
-}
-
 .button {
   text-decoration: none;
 }

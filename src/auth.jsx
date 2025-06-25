@@ -41,17 +41,30 @@ function App() {
       {!userId ? (
         <Loader />
       ) : (
-        <div>
+        <div className="auth-container">
           <p>
             Use boardId and userId in the query parameters of your webhook!
             <span>{userId}</span>
+            <br />
+            webhook should look like this:
           </p>
-          <button onClick={handleCopyToClipboard}>Copy ID</button>
-          <a
-            href={`https://miro.com/app-install-completed/?client_id=${clientId}&team_id=${teamId}`}
-          >
-            Return to miro
+          <a>
+            https://azuresyncbe.netlify.app?userId=<span>{userId}</span>
+            &boardId=uXjVIosIo5c=/
           </a>
+          <button
+            className="button button-primary"
+            onClick={handleCopyToClipboard}
+          >
+            Copy ID
+          </button>
+          <div>
+            <a
+              href={`https://miro.com/app-install-completed/?client_id=${clientId}&team_id=${teamId}`}
+            >
+              Return to miro boards
+            </a>
+          </div>
         </div>
       )}
     </div>
