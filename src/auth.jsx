@@ -55,13 +55,13 @@ function App() {
             Copy user ID
           </button>
           <div>
-            <img src="./assets/pasteurl.png" alt="Azure service hook paste" />
+            <img src="/assets/pasteurl.png" alt="Azure service hook paste" />
           </div>
           <div>
             <a
               href={`https://miro.com/app-install-completed/?client_id=${clientId}&team_id=${teamId}`}
             >
-              nazad na miro boards
+              Back to miro boards
             </a>
           </div>
         </div>
